@@ -1,0 +1,8 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+RUN useradd -m v4 && mkdir -p /app/data && chown -R v4 /app/data
+USER v4
+CMD ["python", "-m", "bot.main"]
