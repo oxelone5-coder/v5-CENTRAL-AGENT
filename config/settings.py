@@ -28,6 +28,8 @@ class Settings:
     portfolio_interval: int
     live_public: bool
     bot_wallet_capital: float
+    shawky_id: int
+    marius_id: int
 
     def __repr__(self):
         return f"Settings(guild={self.guild_id}, owner={self.owner_id}, token=<redacted>)"
@@ -44,9 +46,11 @@ def load_settings(require_token=True) -> Settings:
         db_path=os.environ.get("V4_DB_PATH", "data/v4.sqlite"),
         market_interval=_int("V4_MARKET_INTERVAL", 120),
         analysis_interval=_int("V4_ANALYSIS_INTERVAL", 300),
-        strategy_interval=_int("V4_STRATEGY_INTERVAL", 600),
+        strategy_interval=_int("V4_STRATEGY_INTERVAL", 180),
         news_interval=_int("V4_NEWS_INTERVAL", 180),
-        portfolio_interval=_int("V4_PORTFOLIO_INTERVAL", 180),
+        portfolio_interval=_int("V4_PORTFOLIO_INTERVAL", 120),
         live_public=os.environ.get("V4_LIVE_PUBLIC", "1") == "1",
         bot_wallet_capital=float(os.environ.get("V4_BOT_WALLET_CAPITAL", "10000")),
+        shawky_id=_int("V4_SHAWKY_ID", 0),
+        marius_id=_int("V4_MARIUS_ID", 0),
     )
